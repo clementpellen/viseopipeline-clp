@@ -47,10 +47,6 @@ jobs:
         name: artifact-frontend-${{ github.run_number }}
         path: ./dist
 
-    - name: Unzip artifact
-      run: ls -la ./dist
-      # run: unzip ./dist/artifact-frontend-${{ github.run_number }}.zip
-
     - name: Login to AWS
       uses: aws-actions/configure-aws-credentials@v1
       with:
