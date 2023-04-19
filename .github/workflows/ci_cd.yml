@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-    path: ./src
+    paths: ./src
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: dist
+        name: artifact-frontend-${{ github.run_number }}
         path: ./dist
   
   # deployment:
@@ -41,6 +41,6 @@ jobs:
   #   - name: Download build artifacts
   #     uses: actions/download-artifact@v2
   #     with:
-  #       name: dist
+  #       name: artifact
   #       path: ./dist
     
