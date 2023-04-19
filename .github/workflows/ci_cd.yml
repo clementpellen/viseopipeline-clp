@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-    paths: ./src
+    paths: ./src/
 
 jobs:
   build:
@@ -56,6 +56,6 @@ jobs:
 
     - name: ls dist
       run: ls ./dist/viseopipeline-clp
-      
+
     - name: Deploy to S3
       run: aws s3 sync ./dist/viseopipeline-clp/ s3://viseopipeline-clp --delete
