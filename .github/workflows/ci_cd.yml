@@ -13,12 +13,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup Node.js
-      uses: actions/setup-node@v2-beta
+      uses: actions/setup-node@v3
+      
       with:
-        node-version: '14.x'
+        node-version: '18.x'
 
     - name: Install dependencies
       run: npm install
@@ -26,9 +27,6 @@ jobs:
     - name: Build
       run: npm run build --dev
 
-    - name: Zip artifact
-      run: zip -r artifact.zip ./dist
-    
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
@@ -42,20 +40,17 @@ jobs:
 
     steps:
     - name: Download build artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: artifact-frontend-${{ github.run_number }}
         path: ./dist
 
     - name: Login to AWS
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
-
-    - name: ls dist
-      run: ls ./dist/viseopipeline-clp
 
     - name: Deploy to S3
       run: aws s3 sync ./dist/viseopipeline-clp/ s3://viseopipeline-clp --delete
