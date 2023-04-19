@@ -54,5 +54,8 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
+    - name: ls dist
+      run: ls ./dist/viseopipeline-clp
+      
     - name: Deploy to S3
       run: aws s3 sync ./dist/viseopipeline-clp/ s3://viseopipeline-clp --delete
