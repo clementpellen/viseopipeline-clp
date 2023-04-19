@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-    paths: ./src/
+    paths: 'src/**'
 
 jobs:
   build:
