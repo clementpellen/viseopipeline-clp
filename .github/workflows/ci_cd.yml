@@ -25,6 +25,9 @@ jobs:
 
     - name: Build
       run: npm run build --dev
+
+    - name: Zip artifact
+      run: zip -r artifact.zip ./dist
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
@@ -41,6 +44,6 @@ jobs:
   #   - name: Download build artifacts
   #     uses: actions/download-artifact@v2
   #     with:
-  #       name: artifact
+  #       name: artifact-frontend-${{ github.run_number }}
   #       path: ./dist
     
