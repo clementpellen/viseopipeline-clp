@@ -48,7 +48,7 @@ jobs:
         path: ./dist
 
     - name: Unzip artifact
-      run: unzip artifact-frontend-${{ github.run_number }}.zip
+      run: unzip ./dist/artifact-frontend-${{ github.run_number }}.zip
 
     - name: Login to AWS
       uses: aws-actions/configure-aws-credentials@v1
@@ -58,4 +58,4 @@ jobs:
         aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Deploy to S3
-      run: aws s3 sync ./dist/viseopipeline-clp s3://viseopipeline-clp --delete
+      run: aws s3 sync ./dist/viseopipeline-clp/ s3://viseopipeline-clp --delete
